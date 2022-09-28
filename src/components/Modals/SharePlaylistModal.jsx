@@ -1,9 +1,21 @@
 import React from 'react';
+
+// modal
 import Modal from 'react-modal';
+
+// scss
 import './SharePlaylistModal.scss';
+
+// icons
 import {IoCloseCircle} from 'react-icons/io5';
 import {FiSend} from 'react-icons/fi';
+
+// playlists context
 import { playlistsContext } from '../../context/playlistsContext';
+
+// utilities
+import { postData } from '../../utils/postData';
+import { URLS } from '../../utils/urls';
 
 function SharePlaylistModal({isOpen, setIsOpen}) {
 
@@ -12,18 +24,11 @@ function SharePlaylistModal({isOpen, setIsOpen}) {
 
   async function sharePlaylist() {
     if (playlist.length < 10) return;
-    const response = await fetch('http://localhost:5000/preview', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        url: playlist
-      })
-    });
-
-    let data = await response.json();
-    console.log(data);
+    let url = URLS.BASE_URL + URLS.PREVIEW_URL;
+    let postBody = {
+      url: playlist
+    }
+    let data = await postData(url, postBody);
     setPlaylists(prev => [...prev, data]);
     setIsOpen(false);
   }

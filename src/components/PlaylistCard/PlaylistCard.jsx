@@ -1,9 +1,11 @@
 import React from 'react';
 
+// scss
 import './PlaylistCard.scss';
 
 function PlaylistCard({imageUrl, playlistUrl, title, description}) {
 
+  // onclick goto playlist
   const redirectToPlaylist = () => {
     window.open(playlistUrl, '_blank');
   }

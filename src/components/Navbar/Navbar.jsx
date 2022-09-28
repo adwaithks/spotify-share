@@ -1,8 +1,16 @@
-import React from 'react'
-import './Navbar.scss'
+import React from 'react';
+
+// scss
+import './Navbar.scss';
+
+// Link 
 import {Link} from 'react-router-dom';
+
+// icons
 import {BsSearch} from 'react-icons/bs';
 import {HiViewGridAdd} from 'react-icons/hi';
+
+// modal
 import SharePlaylistModal from '../Modals/SharePlaylistModal';
 
 function Navbar() {

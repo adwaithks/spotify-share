@@ -4,8 +4,11 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { PlaylistsProvider } from './context/playlistsContext';
+import Modal from 'react-modal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+Modal.setAppElement(document.getElementById('root'));
+
 root.render(
     <PlaylistsProvider>
       <App />

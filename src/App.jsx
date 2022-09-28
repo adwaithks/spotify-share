@@ -1,7 +1,13 @@
 import React from 'react';
+
+// scss
 import './App.scss';
+
+// subcomponents
 import Navbar from './components/Navbar/Navbar';
 import SharedList from './components/SharedList/SharedList';
+
+// react-router-dom
 import {
   BrowserRouter,
   Routes,

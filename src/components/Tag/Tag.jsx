@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Tag({Icon, name, bgColor, borderColor}) {
   return (
@@ -9,4 +9,4 @@ function Tag({Icon, name, bgColor, borderColor}) {
   )
 }
 
-export default Tag
+export default Tag;
