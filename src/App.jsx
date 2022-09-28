@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <SharePlaylist setList={setList} />
+      {/*<SharePlaylist setList={setList} />*/}
         <Navbar />
         <Routes>
           <Route element={<SharedList list={list} />} path="/" />
