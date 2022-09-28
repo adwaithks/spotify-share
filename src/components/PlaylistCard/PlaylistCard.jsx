@@ -3,7 +3,10 @@ import React from 'react';
 // scss
 import './PlaylistCard.scss';
 
-function PlaylistCard({imageUrl, playlistUrl, title, description}) {
+// icons
+import {SiApplemusic} from 'react-icons/si';
+
+function PlaylistCard({imageUrl, playlistUrl, title, description, width}) {
 
   // onclick goto playlist
   const redirectToPlaylist = () => {
@@ -11,9 +14,14 @@ function PlaylistCard({imageUrl, playlistUrl, title, description}) {
   }
 
   return (
-    <div className='playlistcard' onClick={redirectToPlaylist}>
+    <div style={{width: width ? width : '45%'}} className='playlistcard' onClick={redirectToPlaylist}>
         <div className='playlistcard__image'>
-            <img src={imageUrl} alt={title} />
+            {
+              imageUrl.length > 0 ? 
+              <img src={imageUrl} alt={title} /> :
+              <SiApplemusic className='playlistcard__image__fallback' />
+            }
+            
         </div>
         <div className='playlistcard__info'>
             <h1 className='playlistcard__info__title'>{title}</h1>

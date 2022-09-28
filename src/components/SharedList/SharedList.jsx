@@ -20,6 +20,7 @@ function SharedList() {
           return (
             <PlaylistCard 
             key={idx}
+            width={'400px'}
             playlistUrl={playlist.playlistUrl}
             imageUrl={playlist.imageUrl} 
             title={playlist.title}

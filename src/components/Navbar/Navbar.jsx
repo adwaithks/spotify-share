@@ -24,8 +24,8 @@ function Navbar() {
   return (
     <div className='navbar'>
         <nav className='navbar__links'>
-            <Link className='navbar__links__link navbar__links__link-active' to="/">home</Link>
-            <Link className='navbar__links__link' to="/favourites">favourites</Link>
+            <Link className='navbar__links__link navbar__links__link-active' to="/">Home</Link>
+            <Link className='navbar__links__link' to="/favourites">Favourites</Link>
             <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share</button>
         </nav>
         <div className='navbar__search'>

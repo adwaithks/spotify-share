@@ -6,7 +6,7 @@
     border-radius: 10px;
     padding: 10px;
     margin: auto;
-    top: 30%;
+    top: 20%;
     width: 60%;
     min-width: 500px;
     display: flex;
@@ -18,12 +18,12 @@
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        top: 27%;
+        top: 18%;
     }
 
     100% {
         opacity: 1;
-        top: 30%;
+        top: 20%;
     }
 }
 
@@ -51,11 +51,22 @@
     border-radius: 10px;
     padding: 10px;
     outline: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .shareplaylistmodal__urlpreview {
-
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    h5 {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        color: rgba(255, 255, 255, 0.842);
+    }
 }
 
 .shareplaylistmodal__share__btn {
@@ -69,6 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
 
     .shareplaylistmodal__share__btn__icon {
         margin-right: 10px;
