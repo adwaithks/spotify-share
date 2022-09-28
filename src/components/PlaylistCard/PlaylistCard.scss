@@ -1,4 +1,4 @@
-.trackcard {
+.playlistcard {
     width: 45%;
     height: fit-content;
     display: flex;
@@ -9,7 +9,7 @@
     cursor: pointer;
 }
 
-.trackcard__image {
+.playlistcard__image {
     margin-right: 10px;
     img {
         border-radius: 10px;
@@ -18,11 +18,11 @@
     }
 }
 
-.trackcard__info {
+.playlistcard__info {
     width: 100%;
     margin-top: 10px;
 
-    .trackcard__info__title {
+    .playlistcard__info__title {
         font-size: 1.5em;
         color: white;
         text-overflow: ellipsis;   /* IE, Safari (WebKit) */
@@ -30,9 +30,15 @@
         white-space:wrap; 
     }
 
-    .trackcard__info__desc {
+    .playlistcard__info__desc {
         font-weight: 400;
         color: rgb(165, 165, 165);
         font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .playlistcard {
+        width: 100%;
     }
 }

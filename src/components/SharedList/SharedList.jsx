@@ -1,8 +1,9 @@
 import React from 'react';
-import TrackCard from '../TrackCard/TrackCard';
+import { playlistsContext } from '../../context/playlistsContext';
+import PlaylistCard from '../PlaylistCard/PlaylistCard';
 import './SharedList.scss'
 
-function SharedList({list}) {
+function SharedList() {
 
   const authUrl = 'https://accounts.spotify.com/authorize/';
   const redirectUrl = 'http://localhost:3000/';
@@ -12,13 +13,14 @@ function SharedList({list}) {
     'playlist-read-private'
   ];
   const loginUrl = `${authUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`
-  
+  const {playlists} = React.useContext(playlistsContext);
+
   return (
     <div className='sharedlist'>
       {
-        list.map((playlist, idx) => {
+        playlists.map((playlist, idx) => {
           return (
-            <TrackCard 
+            <PlaylistCard 
             key={idx}
             playlistUrl={playlist.playlistUrl}
             imageUrl={playlist.imageUrl} 
