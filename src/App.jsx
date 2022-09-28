@@ -1,11 +1,27 @@
 import React from 'react';
 import './App.scss';
+import Navbar from './components/Navbar/Navbar';
 import SharedList from './components/SharedList/SharedList';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import SharePlaylist from './components/SharePlaylist/SharePlaylist';
 
 function App() {
+
+  const [list, setList] = React.useState([]);
+
   return (
     <div className="App">
-      <SharedList />
+      <BrowserRouter>
+      <SharePlaylist setList={setList} />
+        <Navbar />
+        <Routes>
+          <Route element={<SharedList list={list} />} path="/" />
+        </Routes>
+      </BrowserRouter>  
     </div>
   );
 }

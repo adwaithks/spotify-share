@@ -2,9 +2,14 @@ import React from 'react';
 
 import './TrackCard.scss';
 
-function TrackCard({imageUrl, trackUrl, title, description}) {
+function TrackCard({imageUrl, playlistUrl, title, description}) {
+
+  const redirectToPlaylist = () => {
+    window.open(playlistUrl, '_blank');
+  }
+
   return (
-    <div className='trackcard'>
+    <div className='trackcard' onClick={redirectToPlaylist}>
         <div className='trackcard__image'>
             <img src={imageUrl} alt={title} />
         </div>
