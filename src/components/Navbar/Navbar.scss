@@ -2,15 +2,13 @@
     width: 90%;
     margin: auto;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    position: sticky;
     justify-content: space-between;
     gap: 10px;
     position: sticky;
-    top: 0;
     padding-bottom: 20px;
     border-bottom: rgba(255, 255, 255, 0.114) solid 2px;
-    align-items: center;
     margin-bottom: 50px;
     margin-top: 20px;
 }
@@ -54,9 +52,13 @@
 }
 
 .navbar__search {
-    flex: 0.7;
+    flex: 1;
+    margin-left: 6em;
+    border: white solid 1px;
+
+    float: right;
     background-color: rgb(24, 24, 24);
-    border: rgba(255, 255, 255, 0.141) solid 1px;
+    //border: rgba(255, 255, 255, 0.141) solid 1px;
     display: flex;
     align-items: center;
     padding: 0 0 0 15px;
@@ -77,6 +79,34 @@
         outline: none;
         border: none;
         color: white;
+    }
+}
+
+.navbar__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        font-size: 0.8em;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.706);
+    }
+
+    .navbar__avatar__userimg {
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        border: rgb(250, 249, 249) solid 2px;
+    }
+
+    .navbar__avatar__user {
+        border: white solid 2px;
+        border-radius: 50%;
+        color: white;
+        font-size: 2.5em;
+        cursor: pointer;
     }
 }
 

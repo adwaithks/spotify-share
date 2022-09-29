@@ -1,31 +1,24 @@
-.shareplaylistmodal-open {
+.shareplaylistmodal {
     border: rgba(255, 255, 255, 0.558) solid 1px;
     border: none;
     outline: none;
-    position: relative;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     margin: auto;
-    top: 20%;
     width: 60%;
     min-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     animation: fadeIn 0.3s;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        top: 18%;
-    }
 
-    100% {
-        opacity: 1;
-        top: 20%;
-    }
-}
 
 .shareplaylistmodal__header {
     width: 90%;

@@ -1,11 +1,17 @@
 import React from 'react';
 
+// user context
+import { userContext } from './context/userContext';
+
 // scss
 import './App.scss';
 
 // subcomponents
 import Navbar from './components/Navbar/Navbar';
-import SharedList from './components/SharedList/SharedList';
+import Home from './pages/Home/Home';
+
+// utilities
+import { getUserData } from './utils/spotifyAPI/getUserData';
 
 // react-router-dom
 import {
@@ -13,15 +19,46 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import User from './pages/User/User';
 
 function App() {
+
+  const { setUser } = React.useContext(userContext);
+
+  async function authenticateUser(token) {
+    if (!token) return;
+    let data = await getUserData(token);
+    setUser({
+      name: data.display_name,
+      token: token,
+      isLoggedIn: true,
+      imageUrl: data.images[0].url
+    });
+    window.localStorage.setItem('user', JSON.stringify({
+      name: data.display_name,
+      token: token,
+      isLoggedIn: true,
+      imageUrl: data.images[0].url
+    }));
+  }
+
+  React.useEffect(() => {
+    if (!window.location.hash) return;
+
+    const spotifyAuthData = window.location.hash.substring(1).split('&');
+    const token = spotifyAuthData[0].split('=')[1];
+    window.location.hash = "";
+
+    authenticateUser(token);
+  }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route element={<SharedList />} path="/" />
+          <Route element={<Home />} path="/" />
+          <Route element={<User />} path="/user" />
         </Routes>
       </BrowserRouter>  
     </div>

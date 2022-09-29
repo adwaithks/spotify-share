@@ -37,6 +37,7 @@ function SharePlaylistModal({isOpen, setIsOpen}) {
       url: playlist
     }
     let data = await postData(url, postBody);
+    console.log(data);
     setPlaylistMetadata({
       title: data.title,
       description: data.description,
@@ -53,7 +54,7 @@ function SharePlaylistModal({isOpen, setIsOpen}) {
 
   return (
     <Modal
-      className={isOpen ? 'shareplaylistmodal-open' : 'shareplaylistmodal-close'}
+      className='shareplaylistmodal'
       onRequestClose={() => setIsOpen(false)}
       isOpen={isOpen}
       style={{

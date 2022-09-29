@@ -5,14 +5,17 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { PlaylistsProvider } from './context/playlistsContext';
 import Modal from 'react-modal';
+import { UserProvider } from './context/userContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 Modal.setAppElement(document.getElementById('root'));
 
 root.render(
-    <PlaylistsProvider>
-      <App />
-    </PlaylistsProvider>
+    <UserProvider>
+      <PlaylistsProvider>
+        <App />
+      </PlaylistsProvider>
+    </UserProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

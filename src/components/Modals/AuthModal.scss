@@ -1,0 +1,84 @@
+.authmodal {
+    width: 300px;
+    height: fit-content;
+    padding: 15px 25px 25px 25px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.94);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        top: 48%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+.authmodal__header {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+
+    .authmodal__header__close {
+        float: right;
+        font-size: 1.8em;
+    }
+}
+
+.authmodal__disclaimer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    h1 {
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-weight: 400;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 0.8em;
+        color: rgba(0, 0, 0, 0.435);
+    }
+}
+
+.authmodal__auth__btn {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 10px 15px 10px 15px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: black;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+
+    .authmodal__auth__btn__spotify {
+        margin-right: 10px;
+        font-size: 1.5em;
+        color: rgb(0, 199, 0);
+    }
+}

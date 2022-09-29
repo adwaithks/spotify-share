@@ -19,12 +19,12 @@ function SharedList() {
         playlists.map((playlist, idx) => {
           return (
             <PlaylistCard 
-            key={idx}
-            width={'400px'}
-            playlistUrl={playlist.playlistUrl}
-            imageUrl={playlist.imageUrl} 
-            title={playlist.title}
-            description={playlist.description}
+              key={idx}
+              width={'400px'}
+              playlistUrl={playlist.playlistUrl}
+              imageUrl={playlist.imageUrl} 
+              title={playlist.title}
+              description={playlist.description}
             />
           )
         })

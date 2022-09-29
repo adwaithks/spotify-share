@@ -1,0 +1,3 @@
+https://api.spotify.com/v1/me/playlists
+Authorization: Bearer BQAAOsYtHhl48Ysku0BttfnImhS_7TbHhAUkw1fWa-_PnbhPv0X1fB4sCSb8gjyq9P6DWlk7c62hqxX0RSJziOlrjX2fyVr4wJNP8ea3qiurYyfm072XTmYIUH6yh7kIRACWB9dASWghSbL7DUvSiri7E-pdmM0vF5XkLwrmzAqq3c-u0B5VhnA1XIc0_ve4lskH-l-s1z8CWZE
+Content-Type: application/json
