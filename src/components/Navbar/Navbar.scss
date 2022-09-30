@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: space-between;
     gap: 10px;
     position: sticky;
@@ -45,9 +45,11 @@
     }
 
     .navbar__links__link-active {
-        color: white;
-        border-bottom: white solid 2px;
-        padding: 5px 0 5px 0;
+        font-family: 'DM Sans', sans-serif;
+        text-decoration: none;
+        font-size: 1.2em;
+        margin-right: 20px;
+        border-bottom: white solid 1px !important;
     }
 }
 

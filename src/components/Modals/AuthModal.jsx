@@ -6,8 +6,11 @@ import {IoCloseCircle} from 'react-icons/io5';
 import {BsSpotify} from 'react-icons/bs';
 
 import { getSpotifyAuthUrl } from '../../utils/getSpotifyAuthUrl';
+import { authModalVisibilityContext } from '../../context/authModalVisibilityContext';
 
-function AuthModal({isOpen, setIsOpen}) {
+function AuthModal() {
+
+    const {authModalIsOpen, setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
 
     function spotifyAuthHandler() {
         let url = getSpotifyAuthUrl();
@@ -17,8 +20,8 @@ function AuthModal({isOpen, setIsOpen}) {
   return (
     <Modal
         className='authmodal'
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
+        isOpen={authModalIsOpen}
+        onRequestClose={() => setAuthModalIsOpen(false)}
         style={{
         overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.6)',
@@ -26,7 +29,7 @@ function AuthModal({isOpen, setIsOpen}) {
         }}
     >
         <div className='authmodal__header'>
-            <IoCloseCircle onClick={() => setIsOpen(false)} className='authmodal__header__close' />
+            <IoCloseCircle onClick={() => setAuthModalIsOpen(false)} className='authmodal__header__close' />
         </div>
         <div className='authmodal__disclaimer'>
             <h2>Sign in to</h2>
@@ -35,7 +38,7 @@ function AuthModal({isOpen, setIsOpen}) {
         </div>
         <button onClick={spotifyAuthHandler} className='authmodal__auth__btn'>
             <BsSpotify className='authmodal__auth__btn__spotify' /> 
-            Spotify
+            Continue with Spotify
         </button>
     </Modal>
   )

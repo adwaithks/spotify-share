@@ -1,18 +1,47 @@
-import React from 'react'
+import React from 'react';
+import MySpotifyPlaylists from '../../components/MySpotifyPlaylists/MySpotifyPlaylists';
+
+// subcomponents
 import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
-import { userContext } from '../../context/userContext'
+import { authModalVisibilityContext } from '../../context/authModalVisibilityContext';
+
+// usercontext
+import { userContext } from '../../context/userContext';
+
+// spotify api utils
 import { getUserPlaylists } from '../../utils/spotifyAPI/getUserPlaylists';
+
+// scss
 import './User.scss';
 
 
 function User() {
 
-    const {user} = React.useContext(userContext);
-    const [data, setData] = React.useState([]);
+    const {user, setUser} = React.useContext(userContext);
+    const {setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
 
+    const [data, setData] = React.useState([]);
+    const [currentTab, setCurrentTab] = React.useState('MY_SPOTIFY_PLAYLISTS')
+
+
+    const clearUser = () => {
+        setUser({
+            token: "",
+            isLoggedIn: false,
+            name: "",
+            imageUrl: ""
+        });
+        window.localStorage.removeItem('user');
+    }
+
+    // get currently logged in user's playlists
     const getUserPlaylistsHelper = async () => {
-        let data = await getUserPlaylists(user.token);
-        console.log(data);
+        let response = await getUserPlaylists(user.token);
+        if (response.status !== 200) {
+            setAuthModalIsOpen(true);
+            return;
+        }
+        let data = response.data;
         setData(data.items);
     }
 
@@ -22,27 +51,29 @@ function User() {
 
   return (
     <div className='user'>
-        <div className='user__header'>
-            <h1>Playlists</h1>
-        </div>
+        <nav className="user__playlists__nav">
+            <p onClick={() => setCurrentTab('MY_SPOTIFY_PLAYLISTS')} className={currentTab === 'MY_SPOTIFY_PLAYLISTS' ? 'user__playlists__nav__tab-active' : 'user__playlists__nav__tab'}>My Spotify Playlists</p>
+            {/*<p className='user__playlists__nav__tab-disabled'>Shared Playlists</p>*/}
+        </nav>
+
         <div className='user__sharedlist'>
-        {
-            data.length > 0 && data.map((playlist, idx) => {
-                return (
-                    <PlaylistCard
-                        key={idx}
-                        isPublic={playlist.public}
-                        isShareable={playlist.public}
-                        width={'100%'}
-                        playlistUrl={playlist.external_urls.spotify}
-                        imageUrl={playlist.images[0].url} 
-                        title={playlist.name}
-                        playlistDescription={playlist?.description}
-                        description={`${playlist.owner.display_name} . Playlist . ${playlist.tracks.total}`}
-                    />
-                )                            
-            })
-        }
+            {
+                currentTab === 'MY_SPOTIFY_PLAYLISTS' ? 
+                (
+                <>
+                    <div className='user__header'>
+                        <h1>Playlists</h1>
+                    </div>
+                    <MySpotifyPlaylists playlists={data} />
+                </>
+                ) 
+                :
+                (
+                    <></>
+                )
+            }
+            
+            
         </div>
     </div>
   )

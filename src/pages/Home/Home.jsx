@@ -1,12 +1,16 @@
 import React from 'react';
-import SharedList from '../../components/SharedList/SharedList';
+
+// subcomponents
+import AllPlaylists from '../../components/AllPlaylists/AllPlaylists';
+
+// scss
 import './Home.scss';
 
 function Home() {
 
   return (
     <div className='home'>
-        <SharedList />
+        <AllPlaylists />
     </div>
   )
 }

@@ -5,7 +5,7 @@ import './Navbar.scss';
 
 // link, navigate 
 import {Link} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 // icons
 import {HiViewGridAdd} from 'react-icons/hi';
@@ -14,22 +14,37 @@ import {FaUserCircle} from 'react-icons/fa';
 // modal
 import SharePlaylistModal from '../Modals/SharePlaylistModal';
 import AuthModal from '../Modals/AuthModal';
+
+// usercontext
 import { userContext } from '../../context/userContext';
+import { authModalVisibilityContext } from '../../context/authModalVisibilityContext';
 
 function Navbar() {
 
   const navigate = useNavigate();
+
+  const [currentTab, setCurrentTab] = React.useState('HOME');
   const [sharePlaylistModalisOpen, setSharePlaylistModalIsOpen] = React.useState(false);
-  const [authModalIsOpen, setAuthModalIsOpen] = React.useState(false);
+  
+  const {setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
   const {user} = React.useContext(userContext);
-  console.log('inside navbar', user);
+
   const sharePlaylistModalHandler = () => {
+    if (!user.isLoggedIn) {
+      setAuthModalIsOpen(true);
+      return;
+    }
     setSharePlaylistModalIsOpen(true);
   }
 
-  const authModalHandler = () => {
-    setAuthModalIsOpen(true);
-  }
+  React.useEffect(() => {
+    console.log(currentTab);
+    let tab = window.location.href.split("/")[3].toUpperCase();
+    if (tab === "")
+      setCurrentTab('HOME');
+    else
+      setCurrentTab(tab);
+  }, [window.location.href]);
 
   const navigateToUserPage = () => {
     navigate("/user");
@@ -38,16 +53,16 @@ function Navbar() {
   return (
     <div className='navbar'>
         <nav className='navbar__links'>
-            <Link className='navbar__links__link navbar__links__link-active' to="/">Home</Link>
-            {user.isLoggedIn && <Link className='navbar__links__link' to="/favourites">Favourites</Link>}
+            <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Home</Link>
+            {user.isLoggedIn && <Link className={currentTab === 'FAVOURITES' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/favourites">Favourites</Link>}
             <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share</button>
         </nav>
 
         <div className='navbar__avatar'>
-          {user.imageUrl ? <img onClick={navigateToUserPage} className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={authModalHandler} className='navbar__avatar__user' />}
+          {user.imageUrl ? <img onClick={navigateToUserPage} className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={() => setAuthModalIsOpen(true)} className='navbar__avatar__user' />}
           <p>{user.name ? user.name : 'Sign In'}</p>
         </div>
-        <AuthModal isOpen={authModalIsOpen} setIsOpen={setAuthModalIsOpen} />
+        <AuthModal />
         <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} />
     </div>
   )

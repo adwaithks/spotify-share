@@ -4,12 +4,50 @@
     padding: 10px;
 }
 
+.user__playlists__nav {
+    display: flex;
+    color: white;
+    gap: 10px;
+    margin-bottom: 20px;
+    .user__playlists__nav__tab {
+        border: white solid 1px;
+        padding: 10px;
+        border-radius: 25px;
+        cursor: pointer;
+
+        &-active {
+            border: white solid 1px;
+            padding: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+        }
+
+        &-disabled {
+            padding: 10px;
+            cursor: not-allowed;
+            color: rgba(255, 255, 255, 0.456);
+        }
+    }
+}
+
 .user__sharedlist {
 
+    .user__sharedlist__nothing {
+        color: rgba(255, 255, 255, 0.54);
+        font-size: 1em;
+    }
 }
 
 .user__header {
     color: white;
     padding: 5px;
     margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 750px) {
+    .user {
+        width: 100% !important;
+    }
 }

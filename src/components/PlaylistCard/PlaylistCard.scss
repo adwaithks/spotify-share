@@ -6,11 +6,11 @@
     margin: auto;
     border-radius: 10px;
     margin-bottom: 10px;
-    cursor: pointer;
 }
 
 .playlistcard__image {
     margin-right: 10px;
+    cursor: pointer;
     img {
         border-radius: 10px;
         height: 130px;
@@ -30,6 +30,7 @@
     margin-top: 10px;
 
     .playlistcard__info__title {
+        cursor: pointer;
         display: flex;
         align-items: center;
         font-size: 1.5em;

@@ -1,12 +1,11 @@
 .shareplaylistmodal {
-    border: rgba(255, 255, 255, 0.558) solid 1px;
     border: none;
     outline: none;
     border-radius: 5px;
     padding: 10px;
     margin: auto;
     width: 60%;
-    min-width: 500px;
+   // min-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,13 +81,13 @@
 }
 
 @media only screen and (max-width: 750px) {
-    .shareplaylistmodal-open {
-        min-width: 300px;
-        width: 100% !important;
+    .shareplaylistmodal {
+        width: 95% !important;
     }
 
     .shareplaylistmodal__input {
         width: 95%;
+        font-size: 1.2 !important;
     }
 
     .shareplaylistmodal__share__btn {

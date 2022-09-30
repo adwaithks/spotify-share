@@ -27,24 +27,30 @@ function App() {
 
   async function authenticateUser(token) {
     if (!token) return;
-    let data = await getUserData(token);
+    let response = await getUserData(token);
+    let data = response.data;
+    // set user state
     setUser({
       name: data.display_name,
       token: token,
       isLoggedIn: true,
       imageUrl: data.images[0].url
     });
+
+    // set localstorage for persistance
     window.localStorage.setItem('user', JSON.stringify({
       name: data.display_name,
       token: token,
       isLoggedIn: true,
       imageUrl: data.images[0].url
     }));
+
+    console.log(window.localStorage.getItem('user'));
   }
 
   React.useEffect(() => {
     if (!window.location.hash) return;
-
+    console.log(window.location.hash);
     const spotifyAuthData = window.location.hash.substring(1).split('&');
     const token = spotifyAuthData[0].split('=')[1];
     window.location.hash = "";

@@ -32,20 +32,36 @@ function SharePlaylistModal({isOpen, setIsOpen}) {
   async function sharePlaylist() {
     if (playlist.length < 10) return;
     setIsGenPreview(true);
-    let url = URLS.BASE_URL + URLS.PREVIEW_URL;
+
+    let url = URLS.BASE_URL + '/api/playlist/previewshare';
     let postBody = {
       url: playlist
     }
+    
     let data = await postData(url, postBody);
-    console.log(data);
+
+
+    if (data.status != 200) {
+      setIsGenPreview(false);
+      setIsOpen(false);
+      setPlaylist("");
+      alert("Playlist that you tried to share was already shared in ShareList.")
+      return;
+    }
+
     setPlaylistMetadata({
-      title: data.title,
-      description: data.description,
-      imageUrl: data.imageUrl
+      title: data.data.title,
+      description: data.data.description,
+      imageUrl: data.data.imageUrl
     });
-    setIsGenPreview(false);
-    setPlaylists(prev => [...prev, data]);
-    setIsOpen(false);
+
+    // 2secs to see the generated preview
+    setTimeout(() => {
+      setIsGenPreview(false);
+      setPlaylist("");
+      setPlaylists(prev => [...prev, data.data]);
+      setIsOpen(false);
+    }, 2000);
   }
 
   function playlistChangeHandler(e) {
