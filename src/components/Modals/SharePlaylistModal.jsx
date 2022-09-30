@@ -82,6 +82,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
       setPlaylist("");
       setPlaylists(prev => [...prev, data.data]);
       setIsOpen(false);
+      window.location.href = "/"
     }, 2000);
   }
 
