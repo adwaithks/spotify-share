@@ -1,6 +1,6 @@
 export function getSpotifyAuthUrl() {
     const authUrl = 'https://accounts.spotify.com/authorize';
-    const redirectUrl = 'http://localhost:3000/';
+    const redirectUrl = 'https://spotify-share.netlify.app/';
     const clientId = '9bf4fbf0e6cb48b09c4f974becb9eaf9';
     const scopes = [
         'playlist-read-collaborative',
