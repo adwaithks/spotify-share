@@ -49,13 +49,18 @@ function App() {
   }
 
   React.useEffect(() => {
+    console.log('app component rendered');
     if (!window.location.hash) return;
-    console.log(window.location.hash);
-    const spotifyAuthData = window.location.hash.substring(1).split('&');
-    const token = spotifyAuthData[0].split('=')[1];
-    window.location.hash = "";
-
-    authenticateUser(token);
+    console.log('app component: ', window.location.hash);
+    try {
+      const spotifyAuthData = window.location.hash.substring(1).split('&');
+      const token = spotifyAuthData[0].split('=')[1];
+      window.location.hash = "";
+  
+      authenticateUser(token);
+    } catch(err) {
+      return;
+    }
   }, []);
 
   return (

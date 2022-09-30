@@ -24,6 +24,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const [currentTab, setCurrentTab] = React.useState('HOME');
+  const [shareTargetText, setShareTargetText] = React.useState('');
   const [sharePlaylistModalisOpen, setSharePlaylistModalIsOpen] = React.useState(false);
   
   const {setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
@@ -42,8 +43,15 @@ function Navbar() {
     let tab = window.location.href.split("/")[3].toUpperCase();
     if (tab === "")
       setCurrentTab('HOME');
-    else
+    else if (tab === "favourites")
       setCurrentTab(tab);
+    
+    let isShareTargetText = window.location.search?.substring(1)?.split("&")[0];
+
+    if (isShareTargetText.substring(0, 4) == "text") {
+      setShareTargetText(isShareTargetText.substring(5));
+      setSharePlaylistModalIsOpen(true);
+    }
   }, [window.location.href]);
 
   const navigateToUserPage = () => {
@@ -63,7 +71,7 @@ function Navbar() {
           <p>{user.name ? user.name : 'Sign In'}</p>
         </div>
         <AuthModal />
-        <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} />
+        <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} shareTargetText={shareTargetText} />
     </div>
   )
 }

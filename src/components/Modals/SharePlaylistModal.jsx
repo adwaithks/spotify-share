@@ -17,35 +17,56 @@ import { playlistsContext } from '../../context/playlistsContext';
 import { postData } from '../../utils/postData';
 import { URLS } from '../../utils/urls';
 import PlaylistCard from '../PlaylistCard/PlaylistCard';
+import { userContext } from '../../context/userContext';
 
-function SharePlaylistModal({isOpen, setIsOpen}) {
+function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
 
+  const [playlist, setPlaylist] = React.useState(shareTargetText);
   const [isGenPreview, setIsGenPreview] = React.useState(false);
   const [playlistMetadata, setPlaylistMetadata] = React.useState({
     title: "",
     description: "",
     imageUrl: ""
   });
-  const [playlist, setPlaylist] = React.useState('');
+
+
+  const {setUser} = React.useContext(userContext);
   const {setPlaylists} = React.useContext(playlistsContext);
 
+
   async function sharePlaylist() {
-    if (playlist.length < 10) return;
+    let playlist_ = playlist;
+    if (playlist_.length == 0 && shareTargetText.length > 0) {
+      playlist_ = shareTargetText;
+    }
+    if (!playlist_) return;
+
     setIsGenPreview(true);
 
     let url = URLS.BASE_URL + '/api/playlist/previewshare';
     let postBody = {
-      url: playlist
+      url: playlist_
     }
     
     let data = await postData(url, postBody);
 
 
-    if (data.status != 200) {
+    if (data.status != 200 && data.error.type == "PLAYLIST_ALREADY_SHARED") {
       setIsGenPreview(false);
       setIsOpen(false);
       setPlaylist("");
       alert("Playlist that you tried to share was already shared in ShareList.")
+      return;
+    }
+    if (data.status != 200) {
+      console.log('user token expired');
+      setUser({
+        token: "",
+        isLoggedIn: false,
+        name: "",
+        imageUrl: ""
+      });
+      window.localStorage.removeItem('user');
       return;
     }
 
@@ -82,7 +103,7 @@ function SharePlaylistModal({isOpen, setIsOpen}) {
       <div className='shareplaylistmodal__header'>
         <IoCloseCircle onClick={() => setIsOpen(false)} className='shareplaylistmodal__header__close' />
       </div>
-      <textarea onChange={playlistChangeHandler} placeholder='https://open.spotify.com/playlist...' className='shareplaylistmodal__input' name="" id="" cols="30" rows="10"></textarea>
+      <textarea defaultValue={playlist || shareTargetText} onChange={playlistChangeHandler} placeholder='https://open.spotify.com/playlist...' className='shareplaylistmodal__input' name="" id="" cols="30" rows="10"></textarea>
       <button disabled={isGenPreview} onClick={sharePlaylist} className='shareplaylistmodal__share__btn'>
         <FiSend className='shareplaylistmodal__share__btn__icon' /> 
         Share This Playlist

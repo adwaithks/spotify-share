@@ -39,6 +39,13 @@ function User() {
         let response = await getUserPlaylists(user.token);
         if (response.status !== 200) {
             setAuthModalIsOpen(true);
+            setUser({
+                token: "",
+                isLoggedIn: false,
+                name: "",
+                imageUrl: ""
+            });
+            window.localStorage.removeItem('user');
             return;
         }
         let data = response.data;
