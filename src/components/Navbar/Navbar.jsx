@@ -57,7 +57,7 @@ function Navbar() {
   return (
     <div className='navbar'>
         <div className="navbar__logo">
-          <h1>ShareList.in</h1>
+          <h1>ShareList.in (ßeta)</h1>
         </div>
         <nav className='navbar__links'>
             <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Explore</Link>
