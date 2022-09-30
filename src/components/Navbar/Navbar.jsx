@@ -46,8 +46,7 @@ function Navbar() {
     else if (tab === "favourites")
       setCurrentTab(tab);
     
-    let isShareTargetText = window.location.search?.substring(1)?.split("&")[0];
-
+    let isShareTargetText = decodeURIComponent(window.location.search)?.substring(1)?.split("&")[0];
     if (isShareTargetText.substring(0, 4) == "text") {
       setShareTargetText(isShareTargetText.substring(5));
       setSharePlaylistModalIsOpen(true);
