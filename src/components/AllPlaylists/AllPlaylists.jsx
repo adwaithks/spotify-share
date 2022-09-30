@@ -13,21 +13,24 @@ import './AllPlaylists.scss';
 
 function AllPlaylists() {
 
+  const [isLoading, setIsLoading] = React.useState(false);
   const {playlists, setPlaylists} = React.useContext(playlistsContext);
 
   async function getAllPlaylistsHelper() {
     let data = await getAllPlaylists();
+    setIsLoading(false);
     setPlaylists(data.data);
   }
 
   React.useEffect(() => {
+    setIsLoading(true);
     getAllPlaylistsHelper();
   }, []);
 
   return (
     <div className='sharedlist'>
       {
-        playlists.length == 0 && <h1 className='sharedlist__nothing'>Nothing to show :(</h1>
+        isLoading && !playlists && <h1 className='sharedlist__loading'>Getting all playlists for you :)</h1>
       }
 
       {
@@ -35,7 +38,7 @@ function AllPlaylists() {
           return (
             <PlaylistCard 
               key={idx}
-              width={'400px'}
+              width={'49%'}
               playlistUrl={playlist.playlistUrl}
               imageUrl={playlist.imageUrl} 
               title={playlist.title}

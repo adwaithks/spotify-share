@@ -10,6 +10,7 @@ function Home() {
 
   return (
     <div className='home'>
+        <h1 className='home__header'>Explore Playlists</h1>
         <AllPlaylists />
     </div>
   )

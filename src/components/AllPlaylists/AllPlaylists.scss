@@ -3,12 +3,14 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    row-gap: 10px;
     column-gap: 10px;
     flex-wrap: wrap;
 
-    .sharedlist__nothing {
-        color: rgba(255, 255, 255, 0.54);
+    .sharedlist__loading {
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.674);
         font-size: 1.2em;
         position: absolute;
         top: 50%;
@@ -19,4 +21,10 @@
 
 a {
     color: white;
+}
+
+@media only screen and (max-width: 750px) {
+    .sharedlist {
+        width: 95%;
+    }
 }

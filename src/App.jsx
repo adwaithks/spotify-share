@@ -69,7 +69,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<User />} path="/user" />
+          <Route element={<User />} path="/myplaylists" />
         </Routes>
       </BrowserRouter>  
     </div>

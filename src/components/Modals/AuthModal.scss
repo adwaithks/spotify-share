@@ -82,3 +82,9 @@
         color: rgb(0, 199, 0);
     }
 }
+
+@media only screen and (max-width: 750px) {
+    .authmodal {
+        width: 90%;
+    }
+}

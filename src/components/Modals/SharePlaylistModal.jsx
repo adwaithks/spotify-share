@@ -82,7 +82,11 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
       setPlaylist("");
       setPlaylists(prev => [...prev, data.data]);
       setIsOpen(false);
-      window.location.href = "/"
+      if (window.history) {
+        window.history.replaceState(null, "", "");
+      } else {
+        window.location.href = "/";
+      }
     }, 2000);
   }
 
@@ -107,7 +111,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
       <textarea defaultValue={playlist || shareTargetText} onChange={playlistChangeHandler} placeholder='https://open.spotify.com/playlist...' className='shareplaylistmodal__input' name="" id="" cols="30" rows="10"></textarea>
       <button disabled={isGenPreview} onClick={sharePlaylist} className='shareplaylistmodal__share__btn'>
         <FiSend className='shareplaylistmodal__share__btn__icon' /> 
-        Share This Playlist
+        {isGenPreview ? 'Sharing In Progress' : 'Share This Playlist'}
       </button>
 
       <div className='shareplaylistmodal__urlpreview'>

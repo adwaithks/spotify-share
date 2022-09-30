@@ -20,6 +20,7 @@ function User() {
     const {user, setUser} = React.useContext(userContext);
     const {setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
 
+    const [isLoading, setIsLoading] = React.useState(false);
     const [data, setData] = React.useState([]);
     const [currentTab, setCurrentTab] = React.useState('MY_SPOTIFY_PLAYLISTS')
 
@@ -49,10 +50,12 @@ function User() {
             return;
         }
         let data = response.data;
+        setIsLoading(false);
         setData(data.items);
     }
 
     React.useEffect(() => {
+        setIsLoading(true);
         getUserPlaylistsHelper();
     }, []);
 
@@ -71,6 +74,9 @@ function User() {
                     <div className='user__header'>
                         <h1>Playlists</h1>
                     </div>
+                    {
+                        isLoading && <h1 className='user__sharedlist__loading'>Getting all your spotify playlists :)</h1>
+                    }
                     <MySpotifyPlaylists playlists={data} />
                 </>
                 ) 
@@ -79,8 +85,6 @@ function User() {
                     <></>
                 )
             }
-            
-            
         </div>
     </div>
   )

@@ -43,7 +43,7 @@ function Navbar() {
     let tab = window.location.href.split("/")[3].toUpperCase();
     if (tab === "")
       setCurrentTab('HOME');
-    else if (tab === "favourites")
+    else if (tab === "MYPLAYLISTS")
       setCurrentTab(tab);
     
     let isShareTargetText = decodeURIComponent(window.location.search)?.substring(1)?.split("&")[0];
@@ -53,21 +53,23 @@ function Navbar() {
     }
   }, [window.location.href]);
 
-  const navigateToUserPage = () => {
-    navigate("/user");
-  }
 
   return (
     <div className='navbar'>
+        <div className="navbar__logo">
+          <h1>ShareList.in</h1>
+        </div>
         <nav className='navbar__links'>
-            <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Home</Link>
-            {user.isLoggedIn && <Link className={currentTab === 'FAVOURITES' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/favourites">Favourites</Link>}
-            <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share</button>
+            <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Explore</Link>
+            {user.isLoggedIn && <Link className={currentTab === 'MYPLAYLISTS' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/myplaylists">My Playlists</Link>}
         </nav>
 
-        <div className='navbar__avatar'>
-          {user.imageUrl ? <img onClick={navigateToUserPage} className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={() => setAuthModalIsOpen(true)} className='navbar__avatar__user' />}
-          <p>{user.name ? user.name : 'Sign In'}</p>
+        <div className='navbar__links'>
+          <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share Playlist</button>
+          <div className='navbar__avatar'>
+            {user.imageUrl ? <img className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={() => setAuthModalIsOpen(true)} className='navbar__avatar__user' />}
+            <p>{user.name ? user.name : 'Sign In'}</p>
+          </div>  
         </div>
         <AuthModal />
         <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} shareTargetText={shareTargetText} />
