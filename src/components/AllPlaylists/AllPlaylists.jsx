@@ -39,6 +39,9 @@ function AllPlaylists() {
         <FallingLines
           className='loader__fallinglines'
           visible={true}
+          color='gray'
+          height='80px'
+          width='80px'
         />
       </div>
       }

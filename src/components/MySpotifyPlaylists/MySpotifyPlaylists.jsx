@@ -2,6 +2,7 @@ import React from 'react'
 import PlaylistCard from '../PlaylistCard/PlaylistCard'
 
 function MySpotifyPlaylists({playlists}) {
+
   return (
     <div>
         {

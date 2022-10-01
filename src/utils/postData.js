@@ -12,7 +12,7 @@ export async function postData(url, postBody, headers = {'Content-Type': 'applic
     let res; 
 
     if (response.status != 200) {
-      res = createResponse(response.status, "", data.error.message);
+      res = createResponse(response.status, data.error.type);
     }  else {
       res = createResponse(200, "", data.data);
     }

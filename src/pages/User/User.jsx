@@ -3,7 +3,6 @@ import { FallingLines } from 'react-loader-spinner';
 import MySpotifyPlaylists from '../../components/MySpotifyPlaylists/MySpotifyPlaylists';
 
 // subcomponents
-import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
 import { authModalVisibilityContext } from '../../context/authModalVisibilityContext';
 
 // usercontext
@@ -24,17 +23,6 @@ function User() {
     const [isLoading, setIsLoading] = React.useState(false);
     const [data, setData] = React.useState([]);
     const [currentTab, setCurrentTab] = React.useState('MY_SPOTIFY_PLAYLISTS')
-
-
-    const clearUser = () => {
-        setUser({
-            token: "",
-            isLoggedIn: false,
-            name: "",
-            imageUrl: ""
-        });
-        window.localStorage.removeItem('user');
-    }
 
     // get currently logged in user's playlists
     const getUserPlaylistsHelper = async () => {
@@ -81,6 +69,9 @@ function User() {
                           <FallingLines
                             className='loader__fallinglines'
                             visible={true}
+                            color='gray'
+                            height='80px'
+                            width='80px'
                           />
                         </div>
                     }

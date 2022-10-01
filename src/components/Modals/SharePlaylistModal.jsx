@@ -55,13 +55,14 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
     
     let data = await postData(url, postBody);
 
-    if (data.status != 200 && data.error.type == "PLAYLIST_ALREADY_SHARED") {
+    if (data.status != 200 && data.message == "PLAYLIST_ALREADY_SHARED") {
       setIsGenPreview(false);
       setIsOpen(false);
       setPlaylist("");
-      alert("Playlist that you tried to share was already shared in ShareList.")
+      console.log('already shared')
       return;
     }
+
     if (data.status != 200) {
       console.log('user token expired');
       setUser({
@@ -71,6 +72,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
         imageUrl: ""
       });
       window.localStorage.removeItem('user');
+      window.location.href = "/"; 
       return;
     }
 
