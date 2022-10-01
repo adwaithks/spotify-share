@@ -6,6 +6,7 @@ import AllPlaylists from '../../components/AllPlaylists/AllPlaylists';
 // scss
 import './Home.scss';
 
+
 function Home() {
 
   return (

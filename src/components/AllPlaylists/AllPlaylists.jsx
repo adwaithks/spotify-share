@@ -6,6 +6,10 @@ import { playlistsContext } from '../../context/playlistsContext';
 // subcomponent
 import PlaylistCard from '../PlaylistCard/PlaylistCard';
 
+// spinner
+import { FallingLines } from 'react-loader-spinner';
+
+// utilities
 import {getAllPlaylists} from '../../utils/API/getAllPlaylists';
 
 // scss
@@ -30,7 +34,13 @@ function AllPlaylists() {
   return (
     <div className='sharedlist'>
       {
-        isLoading && !playlists && <h1 className='sharedlist__loading'>Getting all playlists for you :)</h1>
+      isLoading && playlists.length == 0 && 
+      <div className='loader'>
+        <FallingLines
+          className='loader__fallinglines'
+          visible={true}
+        />
+      </div>
       }
 
       {

@@ -48,7 +48,7 @@ function Navbar() {
     
     let isShareTargetText = decodeURIComponent(window.location.search)?.substring(1)?.split("&")[0];
     if (isShareTargetText.substring(0, 4) == "text") {
-      setShareTargetText(isShareTargetText.substring(5));
+      setShareTargetText(isShareTargetText.substring(5).split("?")[0]);
       setSharePlaylistModalIsOpen(true);
     }
   }, [window.location.href]);

@@ -34,8 +34,13 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
   const {setPlaylists} = React.useContext(playlistsContext);
 
 
+  const processPlaylistUrl = (playlistUrl) => {
+    let playlistUrlToArray = playlistUrl.split("?");
+    return playlistUrlToArray[0];
+  }
+
   async function sharePlaylist() {
-    let playlist_ = playlist;
+    let playlist_ = processPlaylistUrl(playlist);
     if (playlist_.length == 0 && shareTargetText.length > 0) {
       playlist_ = shareTargetText;
     }
@@ -49,7 +54,6 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
     }
     
     let data = await postData(url, postBody);
-
 
     if (data.status != 200 && data.error.type == "PLAYLIST_ALREADY_SHARED") {
       setIsGenPreview(false);

@@ -5,23 +5,20 @@
     flex-wrap: wrap;
     column-gap: 10px;
     flex-wrap: wrap;
-
-    .sharedlist__loading {
-        width: 95%;
-        display: flex;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.674);
-        font-size: 1.2em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 }
 
-a {
-    color: white;
+.loader {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.loader__fallinglines {
+
+}
+
 
 @media only screen and (max-width: 750px) {
     .sharedlist {

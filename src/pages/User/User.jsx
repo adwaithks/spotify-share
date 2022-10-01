@@ -1,4 +1,5 @@
 import React from 'react';
+import { FallingLines } from 'react-loader-spinner';
 import MySpotifyPlaylists from '../../components/MySpotifyPlaylists/MySpotifyPlaylists';
 
 // subcomponents
@@ -75,7 +76,13 @@ function User() {
                         <h1>Playlists</h1>
                     </div>
                     {
-                        isLoading && <h1 className='user__sharedlist__loading'>Getting all your spotify playlists :)</h1>
+                        isLoading && 
+                        <div className='loader'>
+                          <FallingLines
+                            className='loader__fallinglines'
+                            visible={true}
+                          />
+                        </div>
                     }
                     <MySpotifyPlaylists playlists={data} />
                 </>
