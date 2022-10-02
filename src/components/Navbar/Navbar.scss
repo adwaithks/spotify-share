@@ -1,51 +1,35 @@
 .navbar {
-    width: 90%;
+    width: 100%;
     margin: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'navbar__logo navbar__links navbar__share';
     background-color: rgba(0, 0, 0, 0.732);
     position: sticky;
     top: 0;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
     position: sticky;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 25px 20px 25px;
     border-bottom: rgba(255, 255, 255, 0.114) solid 2px;
     margin-bottom: 10px;
 }
 
 .navbar__logo {
+    //border: green solid 1px;
+    grid-area: navbar__logo;
     color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 0.7em;
 }
 
 .navbar__links {
-    width: fit-content;
+    grid-area: navbar__links;
+    //border: red solid 1px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     
-
-    .navbar__links__share {
-        font-size: 1.2em;
-        cursor: pointer;
-        background-color: white;
-        margin-right: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 7px 10px 7px 10px;
-        border-radius: 40px;
-        border: none;
-        outline: none;
-
-        .navbar__links__share__icon {
-            color: black;
-            font-size: 1.6em;
-            margin-right: 10px;
-        }
-    }
 
     .navbar__links__link {
         font-family: 'DM Sans', sans-serif;
@@ -65,35 +49,34 @@
     }
 }
 
-.navbar__search {
-    flex: 1;
-    margin-left: 6em;
-    border: white solid 1px;
-
-    float: right;
-    background-color: rgb(24, 24, 24);
+.navbar__share {
+    grid-area: navbar__share;
+    //border: orange solid 1px;
     display: flex;
     align-items: center;
-    padding: 0 0 0 15px;
-    border-radius: 25px;
+    justify-content: flex-end;
 
-    .navbar__search__icon {
-        color: white;
-        font-size: 1.5em;
-    }
-
-    input {
-        float: right;
-        padding: 13px;
-        border-radius: 25px;
-        width: 100%;
-        font-size: 1.3em;
-        background-color: rgb(24, 24, 24);
-        outline: none;
+    .navbar__links__share {
+        font-size: 1.2em;
+        cursor: pointer;
+        background-color: white;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 10px 10px 10px;
+        border-radius: 40px;
         border: none;
-        color: white;
+        outline: none;
+
+        .navbar__links__share__icon {
+            color: black;
+            font-size: 1.6em;
+            margin-right: 10px;
+        }
     }
 }
+
 
 .navbar__avatar {
     display: flex;
@@ -123,44 +106,57 @@
     }
 }
 
-@media only screen and (max-width: 750px) {
-    .navbar {
-        width: 95%;
-    }
-
+@media only screen and (max-width: 950px) {
     .navbar__links {
-        padding: 10px;
+        justify-content: flex-start;
     }
 
-    .navbar__search {
-        flex: 1;
+    .navbar {
+        padding: 20px 50px 20px 50px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 'navbar__logo navbar__share'
+                              'navbar__links .';
     }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 750px) {
+    .navbar__links {
+        justify-content: flex-start;
+    }
+
+    .navbar {
+        padding: 20px 10px 20px 10px;
+    }
+}
+
+@media only screen and (max-width: 500px) { 
 
     .navbar__logo {
-        color: white;
-        margin-bottom: 20px;
-        font-size: 0.7em;
-    }
-
-    .navbar__search {
-        flex: 1;
-    }
-
-    .navbar__links__share {
-        padding: 10px 10px 10px 10px !important;
+        justify-content: flex-start;
     }
 
     .navbar__links {
-        background-color: rgb(26, 26, 26);
+        justify-content: center;
+        background-color: rgba(23, 23, 23, 0.478);
         border-radius: 10px;
-        margin-bottom: 5px;
-        padding: 10px;
-        width: 100%;
+    }
+
+    .navbar__share {
+        justify-content: space-between;
+        margin-bottom: 20px;
+
         .navbar__links__share {
             width: 100%;
         }
+    }
+
+    .navbar {
+        padding-bottom: 0px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 'navbar__logo'
+                            'navbar__share'
+                              'navbar__links';
     }
 }

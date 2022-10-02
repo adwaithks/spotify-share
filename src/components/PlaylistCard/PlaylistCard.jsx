@@ -15,7 +15,6 @@ function PlaylistCard({
   description, 
   width, 
   playlistDescription = "", 
-  isPublic = true, 
   isShareable = false
 }) {
 
@@ -53,10 +52,9 @@ function PlaylistCard({
         </div>
 
         <div className='playlistcard__info'>
-            <h1 onClick={redirectToPlaylist} className='playlistcard__info__title'>{title} {!isPublic ? <BsFillLockFill className='playlistcard__info__lock' /> : null }</h1>
+            <h1 onClick={redirectToPlaylist} className='playlistcard__info__title'>{title}</h1>
             <h2 className='playlistcard__info__desc'>{description}</h2>
             <h2 className='playlistcard__info__playlistdesc'>{playlistDescription}</h2>
-            {!isPublic && <p className='playlistcard__info__disclaimer'>This playlist is not public or a playlist that you don't own.</p> }
             {isShareable && <button onClick={sharePlaylistHandler} className='playlistcard__info__share__btn'>Share</button>}
         </div>
     </div>

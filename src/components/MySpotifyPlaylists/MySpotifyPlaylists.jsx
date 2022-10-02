@@ -14,8 +14,6 @@ function MySpotifyPlaylists({playlists}) {
                 return (
                     <PlaylistCard
                         key={idx}
-                        isPublic={playlist.public}
-                        isShareable={playlist.public}
                         width={'100%'}
                         playlistUrl={playlist.external_urls.spotify}
                         imageUrl={playlist.images[0].url} 
