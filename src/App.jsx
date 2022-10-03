@@ -69,7 +69,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route element={<Home />} path="/" />
+          <Route element={<Home />} path="*" />
           <Route element={<User />} path="/myplaylists" />
         </Routes>
       </BrowserRouter>  

@@ -38,6 +38,10 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
   const {user, setUser} = React.useContext(userContext);
   const {setPlaylists} = React.useContext(playlistsContext);
 
+  const isAlbumOrPlaylist = (playlistUrl) => {
+    console.log(playlistUrl.split("/")[3].trim().toLowerCase());
+    return ['playlist', 'album'].includes(playlistUrl.split("/")[3].trim().toLowerCase());
+  }
 
   const processPlaylistUrl = (playlistUrl) => {
     let playlistUrlToArray = playlistUrl.split("?");
@@ -46,10 +50,15 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
 
   async function sharePlaylist() {
     let playlist_ = processPlaylistUrl(playlist);
-    if (playlist_.length == 0 && shareTargetText.length > 0) {
+    if (playlist_?.length == 0 && shareTargetText.length > 0) {
       playlist_ = shareTargetText;
     }
-    if (!playlist_) return;
+    if (!playlist_ || playlist_.length == 0) return;
+
+    if (!isAlbumOrPlaylist(playlist_)) {
+      window.alert('Currently you can share only albums or playlists.')
+      return;
+    }
 
     setIsGenPreview(true);
 
@@ -101,7 +110,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
       setPlaylists(prev => [...prev, data.data]);
       setIsOpen(false);
       if (window.history) {
-        window.history.replaceState(null, "", "");
+        window.history.replaceState(null, "", "/");
       } else {
         window.location.href = "/";
       }
