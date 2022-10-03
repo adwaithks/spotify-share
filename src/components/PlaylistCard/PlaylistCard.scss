@@ -26,8 +26,8 @@
     cursor: pointer;
     img {
         border-radius: 10px;
-        height: 130px;
-        width: 130px;
+        height: 150px;
+        width: 140px;
     }
 
     .playlistcard__image__fallback {
@@ -70,7 +70,7 @@
         font-weight: 400;
         color: rgb(165, 165, 165);
         font-size: 1em;
-        margin-bottom: 15px;  
+        margin-bottom: 5px;
     }
 
     .playlistcard__info__disclaimer {
@@ -91,6 +91,17 @@
             background-color: white;
             color: black;
         }
+    }
+
+    .shared__by__label {
+        background-color: rgba(153, 205, 50, 0.665);
+        border: rgb(170, 255, 0) solid 1px;
+        color: white;
+        font-size: 0.8em;
+        padding: 2px 5px 2px 5px;
+        border-radius: 10px;
+        margin-bottom: 15px;  
+        cursor: pointer;
     }
 }
 

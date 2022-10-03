@@ -39,7 +39,6 @@ function Navbar() {
   }
 
   React.useEffect(() => {
-    console.log(currentTab);
     let tab = window.location.href.split("/")[3].toUpperCase();
     if (tab === "")
       setCurrentTab('HOME');
@@ -62,7 +61,7 @@ function Navbar() {
 
         <nav className='navbar__links'>
             <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Explore</Link>
-            {user.isLoggedIn && <Link className={currentTab === 'MYPLAYLISTS' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/myplaylists">My Playlists</Link>}
+            <p className={'navbar__links__link commingsoon__label'} to="/myplaylists">My Playlists</p>
         </nav>
 
         <div className='navbar__share'>

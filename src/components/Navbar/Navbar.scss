@@ -4,20 +4,31 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 'navbar__logo navbar__links navbar__share';
-    background-color: rgba(0, 0, 0, 0.732);
     position: sticky;
     top: 0;
     position: sticky;
     padding: 20px 25px 20px 25px;
+    background-color: rgba(0, 0, 0, 0.6);
     border-bottom: rgba(255, 255, 255, 0.114) solid 2px;
     margin-bottom: 10px;
 }
 
+.commingsoon__label::after {
+    content: 'soon';
+    font-size: .7em;
+    padding: 0 6px 0 6px;
+    border-radius: 10px;
+    color: white;
+    margin-left: 5px;
+    background-color: rgba(255, 0, 0, 0.573);
+    border: red solid 1px;
+}
+
 .navbar__logo {
-    //border: green solid 1px;
     grid-area: navbar__logo;
     color: white;
     display: flex;
+    //border: white solid 1px;
     justify-content: flex-start;
     align-items: center;
     font-size: 0.7em;
@@ -28,13 +39,13 @@
     //border: red solid 1px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     
 
     .navbar__links__link {
         font-family: 'DM Sans', sans-serif;
         text-decoration: none;
-        color: white;
+        color: rgb(201, 201, 201);
         font-size: 1.2em;
         margin-right: 20px;
     }
@@ -44,8 +55,8 @@
         text-decoration: none;
         font-size: 1.2em;
         margin-right: 20px;
-        color: white;
-        border-bottom: white solid 1px !important;
+        color: rgb(255, 255, 255);
+        border-bottom: rgb(255, 255, 255) solid 1px !important;
     }
 }
 
@@ -59,12 +70,12 @@
     .navbar__links__share {
         font-size: 1.2em;
         cursor: pointer;
-        background-color: white;
+        background-color: rgb(255, 255, 255); 
         margin-right: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 10px 10px 10px;
+        padding: 10px 20px 10px 20px;
         border-radius: 40px;
         border: none;
         outline: none;
@@ -138,7 +149,7 @@
 
     .navbar__links {
         justify-content: center;
-        background-color: rgba(23, 23, 23, 0.478);
+        //background-color: rgba(23, 23, 23, 0.478);
         border-radius: 10px;
     }
 

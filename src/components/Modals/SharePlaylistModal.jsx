@@ -10,14 +10,18 @@ import './SharePlaylistModal.scss';
 import {IoCloseCircle} from 'react-icons/io5';
 import {FiSend} from 'react-icons/fi';
 
-// playlists context
+// playlists, user context
 import { playlistsContext } from '../../context/playlistsContext';
+import { userContext } from '../../context/userContext';
+
+// subcomponents
+import PlaylistCard from '../PlaylistCard/PlaylistCard';
+import Toast from '../Toast/Toast';
 
 // utilities
 import { postData } from '../../utils/postData';
 import { URLS } from '../../utils/urls';
-import PlaylistCard from '../PlaylistCard/PlaylistCard';
-import { userContext } from '../../context/userContext';
+
 
 function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
 
@@ -26,17 +30,18 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
   const [playlistMetadata, setPlaylistMetadata] = React.useState({
     title: "",
     description: "",
+    sharedByDisplayName: "",
     imageUrl: ""
   });
 
 
-  const {setUser} = React.useContext(userContext);
+  const {user, setUser} = React.useContext(userContext);
   const {setPlaylists} = React.useContext(playlistsContext);
 
 
   const processPlaylistUrl = (playlistUrl) => {
     let playlistUrlToArray = playlistUrl.split("?");
-    return playlistUrlToArray[0];
+    return playlistUrlToArray[0].trim();
   }
 
   async function sharePlaylist() {
@@ -50,7 +55,10 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
 
     let url = URLS.BASE_URL + '/api/playlist/previewshare';
     let postBody = {
-      url: playlist_
+      url: playlist_,
+      sharedByDisplayName: user.name,
+      sharedByEmail: user.email,
+      userUrl: user.userUrl
     }
     
     let data = await postData(url, postBody);
@@ -59,15 +67,18 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
       setIsGenPreview(false);
       setIsOpen(false);
       setPlaylist("");
-      console.log('already shared')
+      window.alert("Playlist that you tried to share was already shared by someone else.")
+      console.log('playlist already shared')
       return;
     }
 
     if (data.status != 200) {
-      console.log('user token expired');
+      window.alert('token expired');
       setUser({
         token: "",
+        email: "",
         isLoggedIn: false,
+        userUrl: "",
         name: "",
         imageUrl: ""
       });
@@ -79,7 +90,8 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
     setPlaylistMetadata({
       title: data.data.title,
       description: data.data.description,
-      imageUrl: data.data.imageUrl
+      imageUrl: data.data.imageUrl,
+      sharedByDisplayName: data.data.sharedByDisplayName
     });
 
     // 2secs to see the generated preview
@@ -111,6 +123,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
         }
       }}
     >
+      <Toast />
       <div className='shareplaylistmodal__header'>
         <IoCloseCircle onClick={() => setIsOpen(false)} className='shareplaylistmodal__header__close' />
       </div>
@@ -128,6 +141,7 @@ function SharePlaylistModal({isOpen, setIsOpen, shareTargetText}) {
           title={playlistMetadata.title}
           description={playlistMetadata.description}
           imageUrl={playlistMetadata.imageUrl}
+          sharedByDisplayName={playlistMetadata.sharedByDisplayName}
         />}
       </div>
     </Modal>

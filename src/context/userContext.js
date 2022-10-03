@@ -6,6 +6,8 @@ export function UserProvider({children}) {
 
     const [user, setUser] = React.useState(JSON.parse(window.localStorage.getItem('user')) || {
         token: "",
+        email: "",
+        userUrl: "",
         isLoggedIn: false,
         name: "",
         imageUrl: ""

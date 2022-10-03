@@ -5,7 +5,6 @@ import './PlaylistCard.scss';
 
 // icons
 import {SiApplemusic} from 'react-icons/si';
-import {BsFillLockFill} from 'react-icons/bs';
 import { playlistsContext } from '../../context/playlistsContext';
 
 function PlaylistCard({
@@ -15,7 +14,9 @@ function PlaylistCard({
   description, 
   width, 
   playlistDescription = "", 
-  isShareable = false
+  isShareable = false,
+  sharedByDisplayName,
+  sharedByUserUrl
 }) {
 
   /*
@@ -56,6 +57,7 @@ function PlaylistCard({
             <h2 className='playlistcard__info__desc'>{description}</h2>
             <h2 className='playlistcard__info__playlistdesc'>{playlistDescription}</h2>
             {isShareable && <button onClick={sharePlaylistHandler} className='playlistcard__info__share__btn'>Share</button>}
+            <span className='shared__by__label' onClick={() => window.open(`${sharedByUserUrl}`)}>Shared By {sharedByDisplayName}</span>
         </div>
     </div>
   )

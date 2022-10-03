@@ -33,6 +33,8 @@ function User() {
                 token: "",
                 isLoggedIn: false,
                 name: "",
+                email: "",
+                userUrl: "",
                 imageUrl: ""
             });
             window.localStorage.removeItem('user');
@@ -61,7 +63,8 @@ function User() {
                 (
                 <>
                     <div className='user__header'>
-                        <h1>Playlists</h1>
+                        <h1>My Playlists</h1>
+                        <span style={{color: 'gray'}}>In Progress</span>
                     </div>
                     {
                         isLoading && 

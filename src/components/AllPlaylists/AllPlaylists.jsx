@@ -52,8 +52,10 @@ function AllPlaylists() {
             <PlaylistCard 
               key={idx}
               width={'49%'}
+              sharedByDisplayName={playlist.sharedByDisplayName}
               playlistUrl={playlist.playlistUrl}
               imageUrl={playlist.imageUrl} 
+              sharedByUserUrl={playlist.sharedByUserUrl}
               title={playlist.title}
               description={playlist.description}
             />

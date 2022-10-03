@@ -11,6 +11,8 @@ export async function getUserData(token) {
 
     let data = await response.json();
 
+    console.log(data);
+
     if (response.status != 200) 
         res = createResponse(response.status, data.error.message);
     else {

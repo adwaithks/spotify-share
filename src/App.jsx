@@ -33,6 +33,8 @@ function App() {
     setUser({
       name: data.display_name,
       token: token,
+      email: data.email,
+      userUrl: data.external_urls.spotify,
       isLoggedIn: true,
       imageUrl: data.images[0].url
     });
@@ -40,18 +42,17 @@ function App() {
     // set localstorage for persistance
     window.localStorage.setItem('user', JSON.stringify({
       name: data.display_name,
+      email: data.email,
+      userUrl: data.external_urls.spotify,
       token: token,
       isLoggedIn: true,
       imageUrl: data.images[0].url
     }));
 
-    console.log(window.localStorage.getItem('user'));
   }
 
   React.useEffect(() => {
-    console.log('app component rendered');
     if (!window.location.hash) return;
-    console.log('app component: ', window.location.hash);
     try {
       const spotifyAuthData = window.location.hash.substring(1).split('&');
       const token = spotifyAuthData[0].split('=')[1];
