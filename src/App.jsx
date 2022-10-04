@@ -19,7 +19,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import User from './pages/User/User';
+
 
 function App() {
 
@@ -57,9 +57,9 @@ function App() {
       const spotifyAuthData = window.location.hash.substring(1).split('&');
       const token = spotifyAuthData[0].split('=')[1];
       window.location.hash = "";
-  
+
       authenticateUser(token);
-    } catch(err) {
+    } catch (err) {
       return;
     }
   }, []);
@@ -70,9 +70,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route element={<Home />} path="*" />
-          <Route element={<User />} path="/myplaylists" />
+          {/*<Route element={<User />} path="/myplaylists" />*/}
         </Routes>
-      </BrowserRouter>  
+      </BrowserRouter>
     </div>
   );
 }

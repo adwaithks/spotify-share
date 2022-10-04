@@ -45,10 +45,13 @@ function Navbar() {
       setCurrentTab(tab);
     let isShareTargetText = decodeURIComponent(window.location.search)?.substring(1)?.split("&")[0];
     if (isShareTargetText.substring(0, 4) == "text") {
+      if (user.isLoggedIn === false) {
+        setAuthModalIsOpen(true);
+        return;
+      }
       setShareTargetText(isShareTargetText.substring(5).split("?")[0]);
       setSharePlaylistModalIsOpen(true);
     }
-    console.log(isShareTargetText.substring(5).split("?")[0]);
   }, [window.location.href]);
 
 
