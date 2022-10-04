@@ -15,14 +15,14 @@
 }
 
 .commingsoon__label::after {
-    content: 'soon';
-    font-size: .7em;
-    padding: 0 6px 0 6px;
-    border-radius: 10px;
-    color: white;
+    content: ' comming soon';
+    font-size: 0.6em;
+    font-weight: 800;
+    background-color: rgb(170, 255, 0);
+    color: black;
+    border-radius: 20px;
+    padding: 0 3px;
     margin-left: 5px;
-    background-color: rgba(255, 0, 0, 0.573);
-    border: red solid 1px;
 }
 
 .navbar__logo {
@@ -33,7 +33,21 @@
     align-items: center;
     font-size: 0.7em;
 
-    h1 {}
+    img {
+        height: 30px;
+        margin-right: -5px;
+    }
+
+    h1::after {
+        content: ' beta';
+        font-size: 0.6em;
+        font-weight: 800;
+        background-color: rgb(170, 255, 0);
+        color: black;
+        border-radius: 20px;
+        padding: 0 3px;
+        margin-left: 5px;
+    }
 }
 
 .navbar__links {
@@ -57,6 +71,7 @@
         text-decoration: none;
         font-size: 1.2em;
         margin-right: 20px;
+        font-weight: 800;
         color: rgb(255, 255, 255);
         border-bottom: rgb(255, 255, 255) solid 1px !important;
     }
@@ -129,7 +144,7 @@
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 'navbar__logo navbar__share'
-            'navbar__links .';
+            'navbar__links navbar__links';
     }
 }
 

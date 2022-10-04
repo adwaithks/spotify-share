@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { HiViewGridAdd } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
 
+import Logo from './logo.svg';
+
 // modal
 import SharePlaylistModal from '../Modals/SharePlaylistModal';
 import AuthModal from '../Modals/AuthModal';
@@ -54,7 +56,7 @@ function Navbar() {
   return (
     <div className='navbar'>
       <div className="navbar__logo">
-        <h1>ShareList (ßeta)</h1>
+        <h1><img src={Logo} alt="" /> hareList</h1>
       </div>
 
       <nav className='navbar__links'>
