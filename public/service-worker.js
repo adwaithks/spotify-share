@@ -11,20 +11,5 @@ self.addEventListener("activate", (e) => {
 });
 
 self.addEventListener("fetch", (e) => {
-    // fetch as usual and cache the response
-    fetch(e.request)
-        .then((res) => res.json())
-        .then((data) => {
-            caches.open("shareslist-fetch")
-                .then(cache => {
-                    cache.put(e.request, data);
-                })
-        })
-        .catch(() => {
-            // for some reason, if fetch returns error,
-            // serve from cache
-            e.respondWith(
-                caches.match(e.request)
-            );
-        });
+    console.log('fetch proxy');
 });

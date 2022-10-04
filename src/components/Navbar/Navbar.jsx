@@ -22,7 +22,6 @@ import { authModalVisibilityContext } from '../../context/authModalVisibilityCon
 
 function Navbar() {
 
-
   const [currentTab, setCurrentTab] = React.useState('HOME');
   const [shareTargetText, setShareTargetText] = React.useState('');
   const [sharePlaylistModalisOpen, setSharePlaylistModalIsOpen] = React.useState(false);
