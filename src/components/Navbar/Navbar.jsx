@@ -4,12 +4,11 @@ import React from 'react';
 import './Navbar.scss';
 
 // link, navigate 
-import {Link} from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // icons
-import {HiViewGridAdd} from 'react-icons/hi';
-import {FaUserCircle} from 'react-icons/fa';
+import { HiViewGridAdd } from 'react-icons/hi';
+import { FaUserCircle } from 'react-icons/fa';
 
 // modal
 import SharePlaylistModal from '../Modals/SharePlaylistModal';
@@ -21,14 +20,13 @@ import { authModalVisibilityContext } from '../../context/authModalVisibilityCon
 
 function Navbar() {
 
-  const navigate = useNavigate();
 
   const [currentTab, setCurrentTab] = React.useState('HOME');
   const [shareTargetText, setShareTargetText] = React.useState('');
   const [sharePlaylistModalisOpen, setSharePlaylistModalIsOpen] = React.useState(false);
-  
-  const {setAuthModalIsOpen} = React.useContext(authModalVisibilityContext);
-  const {user} = React.useContext(userContext);
+
+  const { setAuthModalIsOpen } = React.useContext(authModalVisibilityContext);
+  const { user } = React.useContext(userContext);
 
   const sharePlaylistModalHandler = () => {
     if (!user.isLoggedIn) {
@@ -55,24 +53,24 @@ function Navbar() {
 
   return (
     <div className='navbar'>
-        <div className="navbar__logo">
-          <h1>ShareList.in (ßeta)</h1>
-        </div>
+      <div className="navbar__logo">
+        <h1>ShareList (ßeta)</h1>
+      </div>
 
-        <nav className='navbar__links'>
-            <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Explore</Link>
-            <p className={'navbar__links__link commingsoon__label'} to="/myplaylists">My Playlists</p>
-        </nav>
+      <nav className='navbar__links'>
+        <Link className={currentTab === 'HOME' ? 'navbar__links__link-active' : 'navbar__links__link'} to="/">Explore</Link>
+        <p className={'navbar__links__link commingsoon__label'} to="/myplaylists">My Playlists</p>
+      </nav>
 
-        <div className='navbar__share'>
-          <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share Playlist</button>
-          <div className='navbar__avatar'>
-            {user.imageUrl ? <img className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={() => setAuthModalIsOpen(true)} className='navbar__avatar__user' />}
-            <p>{user.name ? user.name : 'Sign In'}</p>
-          </div>  
+      <div className='navbar__share'>
+        <button className='navbar__links__share' onClick={sharePlaylistModalHandler}><HiViewGridAdd className='navbar__links__share__icon' /> Share Playlist</button>
+        <div className='navbar__avatar'>
+          {user.imageUrl ? <img className='navbar__avatar__userimg' src={user.imageUrl} alt="" /> : <FaUserCircle onClick={() => setAuthModalIsOpen(true)} className='navbar__avatar__user' />}
+          <p>{user.name ? user.name : 'Sign In'}</p>
         </div>
-        <AuthModal />
-        <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} shareTargetText={shareTargetText} />
+      </div>
+      <AuthModal />
+      <SharePlaylistModal isOpen={sharePlaylistModalisOpen} setIsOpen={setSharePlaylistModalIsOpen} shareTargetText={shareTargetText} />
     </div>
   )
 }
